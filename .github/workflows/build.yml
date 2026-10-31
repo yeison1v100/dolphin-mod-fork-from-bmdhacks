@@ -1,3 +1,4 @@
+
 name: Build Dolphin Android (mali-custom-driver)
 
 on:
@@ -35,6 +36,9 @@ jobs:
 
       - name: Configurar Gradle (con caché)
         uses: gradle/actions/setup-gradle@v4
+        with:
+          # El jar "desconocido" está en Externals/SDL (submódulo), no se usa en el build
+          validate-wrappers: false
 
       - name: Compilar APK debug
         working-directory: Source/Android
