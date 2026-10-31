@@ -28,8 +28,10 @@ jobs:
           distribution: temurin
           java-version: 17
 
-      - name: Instalar Android SDK (acepta licencias)
-        uses: android-actions/setup-android@v3
+      - name: Aceptar licencias del Android SDK (ya viene preinstalado)
+        run: |
+          echo "ANDROID_HOME=$ANDROID_HOME"
+          yes | "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" --licenses > /dev/null || true
 
       - name: Configurar Gradle (con caché)
         uses: gradle/actions/setup-gradle@v4
