@@ -46,9 +46,19 @@ jobs:
           chmod +x gradlew
           ./gradlew assembleDebug -Pandroid.injected.build.abi=arm64-v8a --stacktrace
 
+      - name: Buscar APKs generados
+        if: always()
+        run: |
+          echo "--- APKs encontrados ---"
+          find . -name "*.apk" -not -path "./Externals/*" 2>/dev/null
+          echo "--- Contenido de outputs ---"
+          find Source/Android -type d -path "*build/outputs*" 2>/dev/null | head -50
+
       - name: Subir APK
         uses: actions/upload-artifact@v4
         with:
           name: dolphin-mali-custom-driver-debug
-          path: Source/Android/app/build/outputs/apk/**/*.apk
+          path: |
+            Source/Android/**/*.apk
+            **/build/outputs/**/*.apk
           if-no-files-found: error
