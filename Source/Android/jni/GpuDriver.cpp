@@ -96,7 +96,7 @@ JNIEXPORT jboolean JNICALL
 Java_org_dolphinemu_dolphinemu_utils_GpuDriverHelper_00024Companion_supportsCustomDriverLoading(
     JNIEnv* env, jobject instance)
 {
- // If the KGSL (Adreno) or kbase (Mali) device exists custom drivers can be loaded using
+  // If the KGSL (Adreno) or kbase (Mali) device exists custom drivers can be loaded using
   // adrenotools
   return Vulkan::SupportsCustomDriver();
 }
